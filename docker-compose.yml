@@ -1,0 +1,94 @@
+services:
+  node:
+    image: newsblog:dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: node
+    user: node
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - private
+    depends_on:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:8.4
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $password
+      MYSQL_DATABASE: news_blog
+      MYSQL_USER: news_blog
+      MYSQL_PASSWORD: $password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - private
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    volumes:
+      - redis_data:/data
+    networks:
+      - private
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      UPLOAD_LIMIT: 64M
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8101:80"
+    networks:
+      - public
+      - private
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ../frontend/dist:/usr/share/nginx/html/news:ro
+      - ../admin/dist:/usr/share/nginx/html/admin:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./ssl/main:/etc/nginx/ssl/news:ro # SSL for main site
+      - ./ssl/admin:/etc/nginx/ssl/admin:ro # SSL for admin panel
+      - ./ssl/api:/etc/nginx/ssl/api:ro # SSL for API
+    ports:
+      - "8080:80"
+      - "8443:443"
+    networks:
+      - public
+      - private
+    restart: unless-stopped
+    depends_on:
+      - node
+
+networks:
+  public:
+    driver: bridge
+  private:
+    driver: bridge
+    internal: false
+
+volumes:
+  mysql_data:
+  redis_data:
+  node_modules:

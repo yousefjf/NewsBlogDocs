@@ -1,0 +1,1019 @@
+openapi: 3.0.3
+info:
+  title: News Blog API
+  description: API documentation for developers of Vedina Co.
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: https://api.news.vedina.ir/v1
+paths:
+  /admin-logs:
+    get:
+      tags:
+        - Admin Logs
+      summary: Get Admin Logs
+      description: Get Admin Logs
+      operationId: getAdminLogs
+      responses:
+        "200":
+          description: ""
+    post:
+      tags:
+        - Admin Logs
+      summary: Create Admin Log
+      description: Create Admin Log
+      operationId: createAdminLog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                actionType:
+                  type: string
+                  example: create
+                description:
+                  type: string
+                  example: Created a new log.
+                userId:
+                  type: number
+                  example: 1
+            examples:
+              Create Admin Log:
+                value:
+                  actionType: create
+                  description: Created a new log.
+                  userId: 1
+      responses:
+        "200":
+          description: ""
+  /admin-logs/{id}:
+    get:
+      tags:
+        - Admin Logs
+      summary: Get Admin Log by ID
+      description: Get Admin Log by ID
+      operationId: getAdminLogById
+      responses:
+        "200":
+          description: ""
+    delete:
+      tags:
+        - Admin Logs
+      summary: Delete Admin Log by ID
+      description: Delete Admin Log by ID
+      operationId: deleteAdminLogById
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+  /categories:
+    get:
+      tags:
+        - Categories
+      summary: Get All Categories
+      description: Get All Categories
+      operationId: getAllCategories
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+            example: استراتژی رشد
+        - name: limit
+          in: query
+          schema:
+            type: string
+            example: "100"
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - Categories
+      summary: Create Category
+      description: Create Category
+      operationId: createCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryName:
+                  type: string
+                  example: New Category
+                description:
+                  type: string
+                  example: This is a description.
+                path:
+                  type: string
+                  example: test
+            examples:
+              Create Category:
+                value:
+                  categoryName: New Category
+                  description: This is a description.
+                  path: test
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /categories/{id}:
+    get:
+      tags:
+        - Categories
+      summary: Get Category by ID
+      description: Get Category by ID
+      operationId: getCategoryById
+      responses:
+        "200":
+          description: ""
+    delete:
+      tags:
+        - Categories
+      summary: Delete Category by ID
+      description: Delete Category by ID
+      operationId: deleteCategoryById
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - Categories
+      summary: Update Category by ID
+      description: Update Category by ID
+      operationId: updateCategoryById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  example: Updated Category
+                description:
+                  type: string
+                  example: Updated description.
+            examples:
+              Update Category by ID:
+                value:
+                  category_name: Updated Category
+                  description: Updated description.
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: "14"
+  /comments:
+    get:
+      tags:
+        - Comments
+      summary: All Comments
+      description: All Comments
+      operationId: allComments
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - Comments
+      summary: Create Comment
+      description: Create Comment
+      operationId: createComment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                  example: 1
+                score:
+                  type: number
+                  example: 4
+                text:
+                  type: string
+                  example: This is a comment.
+            examples:
+              Create Comment:
+                value:
+                  id: 1
+                  score: 4
+                  text: This is a comment.
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /comments/news/{newsId}:
+    get:
+      tags:
+        - Comments
+      summary: Get Comments by News ID
+      description: Get Comments by News ID
+      operationId: getCommentsByNewsId
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: newsId
+        in: path
+        required: true
+        schema:
+          type: string
+  /comments/{id}:
+    get:
+      tags:
+        - Comments
+      summary: Get Comment by ID
+      description: Get Comment by ID
+      operationId: getCommentById
+      responses:
+        "200":
+          description: ""
+    delete:
+      tags:
+        - Comments
+      summary: Delete Comment by ID
+      description: Delete Comment by ID
+      operationId: deleteCommentById
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - Comments
+      summary: Update Comment by ID
+      description: Update Comment by ID
+      operationId: updateCommentById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commentText:
+                  type: string
+                  example: Updated comment text.
+            examples:
+              Update Comment by ID:
+                value:
+                  commentText: Updated comment text.
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: "14"
+  /comments/{id}/replies:
+    get:
+      tags:
+        - Comments
+      summary: Get Replies to a Comment
+      description: Get Replies to a Comment
+      operationId: getRepliesToAComment
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+  /likes:
+    post:
+      tags:
+        - Likes
+      summary: Create Like
+      description: Create Like
+      operationId: createLike
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newsId:
+                  type: number
+                  example: 1
+            examples:
+              Create Like:
+                value:
+                  newsId: 1
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /likes/news/{newsId}:
+    get:
+      tags:
+        - Likes
+      summary: Get Likes for News
+      description: Get Likes for News
+      operationId: getLikesForNews
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: newsId
+        in: path
+        required: true
+        schema:
+          type: string
+  /likes/{id}:
+    delete:
+      tags:
+        - Likes
+      summary: Delete Like by ID
+      description: Delete Like by ID
+      operationId: deleteLikeById
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+  /media:
+    post:
+      tags:
+        - Media
+      summary: Create Media
+      description: Create Media
+      operationId: createMedia
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: http://example.com/image.jpg
+                newsId:
+                  type: number
+                  example: 1
+                type:
+                  type: string
+                  example: webp
+            examples:
+              Create Media:
+                value:
+                  id: http://example.com/image.jpg
+                  newsId: 1
+                  type: webp
+      responses:
+        "200":
+          description: ""
+  /media/news/{newsId}:
+    get:
+      tags:
+        - Media
+      summary: Get Media by News ID
+      description: Get Media by News ID
+      operationId: getMediaByNewsId
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: newsId
+        in: path
+        required: true
+        schema:
+          type: string
+  /media/{id}:
+    get:
+      tags:
+        - Media
+      summary: Get Media by ID
+      description: Get Media by ID
+      operationId: getMediaById
+      responses:
+        "200":
+          description: ""
+    delete:
+      tags:
+        - Media
+      summary: Delete Media by ID
+      description: Delete Media by ID
+      operationId: deleteMediaById
+      responses:
+        "200":
+          description: ""
+    patch:
+      tags:
+        - Media
+      summary: Update Media by ID
+      description: Update Media by ID
+      operationId: updateMediaById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mediaType:
+                  type: string
+                  example: image
+                mediaUrl:
+                  type: string
+                  example: http://example.com/updated.jpg
+            examples:
+              Update Media by ID:
+                value:
+                  mediaType: image
+                  mediaUrl: http://example.com/updated.jpg
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+  /news:
+    get:
+      tags:
+        - News
+      summary: List News
+      description: List News
+      operationId: listNews
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+            example: ژورنال
+        - name: page
+          in: query
+          schema:
+            type: string
+            example: "1"
+        - name: limit
+          in: query
+          schema:
+            type: string
+            example: "30"
+        - name: category
+          in: query
+          schema:
+            type: string
+            example: business
+      responses:
+        "200":
+          description: ""
+    post:
+      tags:
+        - News
+      summary: Create News
+      description: Create News
+      operationId: createNews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryID:
+                  type: number
+                  example: 1
+                content:
+                  type: string
+                  example: Some news text.
+                description:
+                  type: string
+                  example: Some news text.
+                title:
+                  type: string
+                  example: New Title
+            examples:
+              Create News:
+                value:
+                  categoryID: 1
+                  content: Some news text.
+                  description: Some news text.
+                  title: New Title
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /news/{id}:
+    get:
+      tags:
+        - News
+      summary: Get News by ID
+      description: Get News by ID
+      operationId: getNewsById
+      responses:
+        "200":
+          description: ""
+    delete:
+      tags:
+        - News
+      summary: Delete News by ID
+      description: Delete News by ID
+      operationId: deleteNewsById
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - News
+      summary: Update News by ID
+      description: Update News by ID
+      operationId: updateNewsById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: number
+                  example: 1
+                text:
+                  type: string
+                  example: Updated text.
+                title:
+                  type: string
+                  example: Updated Title
+            examples:
+              Update News by ID:
+                value:
+                  category_id: 1
+                  text: Updated text.
+                  title: Updated Title
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: "383"
+  /tags:
+    get:
+      tags:
+        - Tags
+      summary: Get All Tags
+      description: Get All Tags
+      operationId: getAllTags
+      responses:
+        "200":
+          description: ""
+    post:
+      tags:
+        - Tags
+      summary: Create Tag
+      description: Create Tag
+      operationId: createTag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tagName:
+                  type: string
+                  example: New Tag
+            examples:
+              Create Tag:
+                value:
+                  tagName: New Tag
+      responses:
+        "200":
+          description: ""
+  /tags/{id}:
+    get:
+      tags:
+        - Tags
+      summary: Get Tag by ID
+      description: Get Tag by ID
+      operationId: getTagById
+      responses:
+        "200":
+          description: ""
+    delete:
+      tags:
+        - Tags
+      summary: Delete Tag by ID
+      description: Delete Tag by ID
+      operationId: deleteTagById
+      responses:
+        "200":
+          description: ""
+    patch:
+      tags:
+        - Tags
+      summary: Update Tag by ID
+      description: Update Tag by ID
+      operationId: updateTagById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tagName:
+                  type: string
+                  example: Updated Tag
+            examples:
+              Update Tag by ID:
+                value:
+                  tagName: Updated Tag
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+  /user-activity/user/{userId}:
+    get:
+      tags:
+        - User Activity Logs
+      summary: Get User Activity Logs
+      description: Get User Activity Logs
+      operationId: getUserActivityLogs
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+  /user-activity/action/{actionType}:
+    get:
+      tags:
+        - User Activity Logs
+      summary: Get Logs by Action Type
+      description: Get Logs by Action Type
+      operationId: getLogsByActionType
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: actionType
+        in: path
+        required: true
+        schema:
+          type: string
+  /user-roles:
+    get:
+      tags:
+        - User Roles
+      summary: Get All User Roles
+      description: Get All User Roles
+      operationId: getAllUserRoles
+      responses:
+        "200":
+          description: ""
+    post:
+      tags:
+        - User Roles
+      summary: Create User Role
+      description: Create User Role
+      operationId: createUserRole
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permissions:
+                  type: object
+                  properties:
+                    create:
+                      type: boolean
+                      example: true
+                roleName:
+                  type: string
+                  example: admin
+            examples:
+              Create User Role:
+                value:
+                  permissions:
+                    create: true
+                  roleName: admin
+      responses:
+        "200":
+          description: ""
+  /user-roles/{id}:
+    get:
+      tags:
+        - User Roles
+      summary: Get User Role by ID
+      description: Get User Role by ID
+      operationId: getUserRoleById
+      responses:
+        "200":
+          description: ""
+    delete:
+      tags:
+        - User Roles
+      summary: Delete User Role by ID
+      description: Delete User Role by ID
+      operationId: deleteUserRoleById
+      responses:
+        "200":
+          description: ""
+    patch:
+      tags:
+        - User Roles
+      summary: Update User Role by ID
+      description: Update User Role by ID
+      operationId: updateUserRoleById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permissions:
+                  type: object
+                  properties:
+                    edit:
+                      type: boolean
+                      example: true
+                roleName:
+                  type: string
+                  example: editor
+            examples:
+              Update User Role by ID:
+                value:
+                  permissions:
+                    edit: true
+                  roleName: editor
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+  /users:
+    get:
+      tags:
+        - Users
+      summary: List Users
+      description: List Users
+      operationId: listUsers
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+            example: یوسف
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - Users
+      summary: Create User
+      description: Create User
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: xxxxxxbadhurtxxxx@gmail.com
+                name:
+                  type: string
+                  example: ترانه محمدی
+                password:
+                  type: string
+                  example: "@"
+                phone:
+                  type: string
+                  example: "09999553737"
+                role_id:
+                  type: number
+                  example: 1
+            examples:
+              Create User:
+                value:
+                  email: xxxxxxbadhurtxxxx@gmail.com
+                  name: ترانه محمدی
+                  password: "@"
+                  phone: "09999553737"
+                  role_id: 1
+      responses:
+        "200":
+          description: ""
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Get User by ID
+      description: Get User by ID
+      operationId: getUserById
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - Users
+      summary: Delete User by ID
+      description: Delete User by ID
+      operationId: deleteUserById
+      responses:
+        "200":
+          description: ""
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+  /users/stats:
+    get:
+      tags:
+        - Users
+      summary: Get Stats
+      description: Get Stats
+      operationId: getStats
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /users/comments:
+    get:
+      tags:
+        - Users
+      summary: Get User Comments
+      description: Get User Comments
+      operationId: getUserComments
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /users/favorites:
+    get:
+      tags:
+        - Users
+      summary: Get User Favorites
+      description: Get User Favorites
+      operationId: getUserFavorites
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /users/:
+    patch:
+      tags:
+        - Users
+      summary: Update User by ID
+      description: Update User by ID
+      operationId: updateUserById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: xxxyybadhurtyyxxx@gmail.com
+                name:
+                  type: string
+                  example: ترانه محمدی
+                phone:
+                  type: string
+                  example: "09999557884"
+            examples:
+              Update User by ID:
+                value:
+                  email: xxxyybadhurtyyxxx@gmail.com
+                  name: ترانه محمدی
+                  phone: "09999557884"
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /users/password:
+    put:
+      tags:
+        - Users
+      summary: Change Password
+      description: Change Password
+      operationId: changePassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newPassword:
+                  type: string
+                  example: asba
+                oldPassword:
+                  type: string
+                  example: aaaa
+            examples:
+              Change Password:
+                value:
+                  newPassword: asba
+                  oldPassword: aaaa
+      responses:
+        "200":
+          description: ""
+      security:
+        - bearerAuth: []
+  /users/login:
+    post:
+      tags:
+        - Users
+      summary: User Login
+      description: User Login
+      operationId: userLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: "@"
+                username:
+                  type: string
+                  example: yousefjafaridev@gmail.com
+            examples:
+              User Login:
+                value:
+                  password: "@"
+                  username: yousefjafaridev@gmail.com
+      responses:
+        "200":
+          description: ""
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Admin Logs
+  - name: Categories
+  - name: Comments
+  - name: Likes
+  - name: Media
+  - name: News
+  - name: Tags
+  - name: User Activity Logs
+  - name: User Roles
+  - name: Users

@@ -1,0 +1,1224 @@
+{
+  "info": {
+    "_postman_id": "c64c9aa4-68b7-4e54-b1a4-2fcc01aa41c2",
+    "name": "News Blog API",
+    "description": "A collection of API endpoints for my Node.js application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31324332"
+  },
+  "item": [
+    {
+      "name": "Admin Logs",
+      "item": [
+        {
+          "name": "Create Admin Log",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"userId\": 1, \"actionType\": \"create\", \"description\": \"Created a new log.\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin-logs",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin-logs"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Admin Logs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin-logs",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin-logs"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Admin Log by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin-logs/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin-logs", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Admin Log by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin-logs/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin-logs", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Create Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im1hc3RlciIsImlhdCI6MTczNTcxOTIxMCwiZXhwIjoxNzM4MzExMjEwfQ.7LnPeHvSdY2VKr_pq23ZjGYttqq2dw-eiRMKskdbA5g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"categoryName\": \"New Category\", \"description\": \"This is a description.\", \"path\":\"test\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Categories",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im1hc3RlciIsImlhdCI6MTczNTcxOTIxMCwiZXhwIjoxNzM4MzExMjEwfQ.7LnPeHvSdY2VKr_pq23ZjGYttqq2dw-eiRMKskdbA5g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories?limit=100",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "استراتژی رشد",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category by ID",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"category_name\": \"Updated Category\", \"description\": \"Updated description.\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im1hc3RlciIsImlhdCI6MTczNTcxOTIxMCwiZXhwIjoxNzM4MzExMjEwfQ.7LnPeHvSdY2VKr_pq23ZjGYttqq2dw-eiRMKskdbA5g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "14"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Create Comment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM1MzE1NzY4LCJleHAiOjE3Mzc5MDc3Njh9.8MUdkNQCp_YY2nKx00MpVzgg9Pb4GzIeCg57IZmvy9A",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"id\": 1, \"text\": \"This is a comment.\", \"score\":4}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/comments",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Comments by News ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/comments/news/:newsId",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments", "news", ":newsId"],
+              "variable": [
+                {
+                  "key": "newsId"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Comment by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/comments/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "All Comments",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im1hc3RlciIsImlhdCI6MTczNTcxOTIxMCwiZXhwIjoxNzM4MzExMjEwfQ.7LnPeHvSdY2VKr_pq23ZjGYttqq2dw-eiRMKskdbA5g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/comments",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Comment by ID",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"commentText\": \"Updated comment text.\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/comments/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Comment by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im1hc3RlciIsImlhdCI6MTczNTcxOTIxMCwiZXhwIjoxNzM4MzExMjEwfQ.7LnPeHvSdY2VKr_pq23ZjGYttqq2dw-eiRMKskdbA5g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/comments/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "14"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Replies to a Comment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/comments/:id/replies",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments", ":id", "replies"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Likes",
+      "item": [
+        {
+          "name": "Create Like",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM1MzE1NzY4LCJleHAiOjE3Mzc5MDc3Njh9.8MUdkNQCp_YY2nKx00MpVzgg9Pb4GzIeCg57IZmvy9A",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"newsId\": 1}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/likes",
+              "host": ["{{baseUrl}}"],
+              "path": ["likes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Likes for News",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/likes/news/:newsId",
+              "host": ["{{baseUrl}}"],
+              "path": ["likes", "news", ":newsId"],
+              "variable": [
+                {
+                  "key": "newsId"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Like by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/likes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["likes", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Media",
+      "item": [
+        {
+          "name": "Create Media",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"newsId\": 1, \"id\": \"http://example.com/image.jpg\", \"type\": \"webp\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/media",
+              "host": ["{{baseUrl}}"],
+              "path": ["media"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Media by News ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/media/news/:newsId",
+              "host": ["{{baseUrl}}"],
+              "path": ["media", "news", ":newsId"],
+              "variable": [
+                {
+                  "key": "newsId"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Media by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/media/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["media", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Media by ID",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"mediaUrl\": \"http://example.com/updated.jpg\", \"mediaType\": \"image\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/media/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["media", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Media by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/media/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["media", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "News",
+      "item": [
+        {
+          "name": "Create News",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im1hc3RlciIsImlhdCI6MTczNTcxOTIxMCwiZXhwIjoxNzM4MzExMjEwfQ.7LnPeHvSdY2VKr_pq23ZjGYttqq2dw-eiRMKskdbA5g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"New Title\", \"description\": \"Some news text.\", \"content\": \"Some news text.\", \"categoryID\": 1}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/news",
+              "host": ["{{baseUrl}}"],
+              "path": ["news"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List News",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/news?page=1&limit=30",
+              "host": ["{{baseUrl}}"],
+              "path": ["news"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "ژورنال",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "30"
+                },
+                {
+                  "key": "category",
+                  "value": "business",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get News by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/news/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["news", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "382"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update News by ID",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"Updated Title\", \"text\": \"Updated text.\", \"category_id\": 1}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/news/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["news", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete News by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im1hc3RlciIsImlhdCI6MTczNTcxOTIxMCwiZXhwIjoxNzM4MzExMjEwfQ.7LnPeHvSdY2VKr_pq23ZjGYttqq2dw-eiRMKskdbA5g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/news/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["news", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "383"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tags",
+      "item": [
+        {
+          "name": "Create Tag",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tagName\": \"New Tag\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tags",
+              "host": ["{{baseUrl}}"],
+              "path": ["tags"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tags",
+              "host": ["{{baseUrl}}"],
+              "path": ["tags"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Tag by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tags/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["tags", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Tag by ID",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tagName\": \"Updated Tag\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tags/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["tags", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Tag by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tags/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["tags", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User Activity Logs",
+      "item": [
+        {
+          "name": "Get User Activity Logs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-activity/user/:userId",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-activity", "user", ":userId"],
+              "variable": [
+                {
+                  "key": "userId"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Logs by Action Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-activity/action/:actionType",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-activity", "action", ":actionType"],
+              "variable": [
+                {
+                  "key": "actionType"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User Roles",
+      "item": [
+        {
+          "name": "Create User Role",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"roleName\": \"admin\", \"permissions\": {\"create\": true}}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user-roles",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-roles"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Role by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-roles/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-roles", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All User Roles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-roles",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-roles"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Role by ID",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"roleName\": \"editor\", \"permissions\": {\"edit\": true}}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user-roles/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-roles", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User Role by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-roles/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-roles", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"ترانه محمدی\", \"email\": \"xxxxxxbadhurtxxxx@gmail.com\", \"phone\": \"09999553737\", \"password\": \"@\", \"role_id\": 1}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im1hc3RlciIsImlhdCI6MTczNTcxOTIxMCwiZXhwIjoxNzM4MzExMjEwfQ.7LnPeHvSdY2VKr_pq23ZjGYttqq2dw-eiRMKskdbA5g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "یوسف",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM0NzgyOTE5LCJleHAiOjE3MzczNzQ5MTl9.hIBJjFwDwFHo3CyMoOfNhbzaBBMYCt43KIepPLcM7nY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Stats",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM1NjQ4OTAyLCJleHAiOjE3MzgyNDA5MDJ9.UN1VVuZ8_aQRXFzZxor4xS37eHI1gdW0x0_Yb9OSbwg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "stats"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Comments",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM0Nzg3Nzk3LCJleHAiOjE3MzczNzk3OTd9.0jmG0aVcoRzcpQKVQ1cSa4K5PdbWa0_h8zlijopeNt8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/comments",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "comments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Favorites",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM0Nzg3Nzk3LCJleHAiOjE3MzczNzk3OTd9.0jmG0aVcoRzcpQKVQ1cSa4K5PdbWa0_h8zlijopeNt8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/favorites",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "favorites"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User by ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM0NzgyOTE5LCJleHAiOjE3MzczNzQ5MTl9.hIBJjFwDwFHo3CyMoOfNhbzaBBMYCt43KIepPLcM7nY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"ترانه محمدی\", \"email\": \"xxxyybadhurtyyxxx@gmail.com\", \"phone\": \"09999557884\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM0OTY2ODY4LCJleHAiOjE3Mzc1NTg4Njh9.dT2XeunYEKWODBXSOL657ypLh_Fi2GPyuNqXrZvi9qE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"oldPassword\": \"aaaa\", \"newPassword\": \"asba\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/password",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "password"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ":id"],
+              "variable": [
+                {
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\": \"yousefjafaridev@gmail.com\", \"password\": \"@\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.news.vedina.ir/v1",
+      "type": "string"
+    }
+  ]
+}

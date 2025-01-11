@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: newsblog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          volumeMounts:
+            - name: frontend-dist
+              mountPath: /usr/share/nginx/html/news
+            - name: admin-dist
+              mountPath: /usr/share/nginx/html/admin
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d
+            - name: ssl-main
+              mountPath: /etc/nginx/ssl/news
+            - name: ssl-admin
+              mountPath: /etc/nginx/ssl/admin
+            - name: ssl-api
+              mountPath: /etc/nginx/ssl/api
+      volumes:
+        - name: frontend-dist
+          hostPath:
+            path: /path/to/your/frontend/dist  # Update this path
+        - name: admin-dist
+          hostPath:
+            path: /path/to/your/admin/dist     # Update this path
+        - name: nginx-config
+          hostPath:
+            path: /path/to/your/nginx.conf     # Update this path
+        - name: ssl-main
+          hostPath:
+            path: /path/to/your/ssl/main       # Update this path
+        - name: ssl-admin
+          hostPath:
+            path: /path/to/your/ssl/admin      # Update this path
+        - name: ssl-api
+          hostPath:
+            path: /path/to/your/ssl/api        # Update this path

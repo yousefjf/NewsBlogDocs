@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+  namespace: newsblog
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+        - name: nodejs
+          image: newsblog:dev
+          workingDir: /usr/src/app
+          command: ["npm", "start"]
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: CHOKIDAR_USEPOLLING
+              value: "true"
+          volumeMounts:
+            - name: app-source
+              mountPath: /usr/src/app
+            - name: node-modules
+              mountPath: /usr/src/app/node_modules
+      volumes:
+        - name: app-source
+          hostPath:
+            path: /path/to/your/app  # Update this path
+        - name: node-modules
+          emptyDir: {}
